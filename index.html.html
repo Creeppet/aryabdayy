@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Aryaa! ❤️</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: white;
+            background:
+                radial-gradient(circle at top left, #49205e, transparent 45%),
+                radial-gradient(circle at bottom right, #741f50, transparent 45%),
+                linear-gradient(135deg, #100b1c, #21102d, #160d20);
+            overflow-x: hidden;
+        }
+
+        .birthday-title {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .photo-card {
+            overflow: hidden;
+            border-radius: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            min-height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .cake {
+            position: relative;
+            width: 150px;
+            height: 120px;
+            margin: 30px auto 10px;
+        }
+
+        .cake-top {
+            position: absolute;
+            top: 30px;
+            left: 10px;
+            width: 130px;
+            height: 35px;
+            background: #ffb6c9;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .cake-body {
+            position: absolute;
+            top: 45px;
+            left: 10px;
+            width: 130px;
+            height: 65px;
+            background: linear-gradient(#ff8eae, #e95d8b);
+            border-radius: 0 0 15px 15px;
+        }
+
+        .cake-icing {
+            position: absolute;
+            top: 48px;
+            left: 10px;
+            width: 130px;
+            height: 20px;
+            background: #fff0f5;
+            border-radius: 50%;
+            z-index: 3;
+        }
+
+        .candle {
+            position: absolute;
+            width: 10px;
+            height: 35px;
+            background: repeating-linear-gradient(
+                45deg,
+                #fff 0px,
+                #fff 5px,
+                #ff6f91 5px,
+                #ff6f91 10px
+            );
+            top: 0;
+            left: 70px;
+            border-radius: 3px;
+            z-index: 4;
+        }
+
+        .flame {
+            position: absolute;
+            width: 15px;
+            height: 22px;
+            background: radial-gradient(ellipse at bottom, #fff7a8, #ff9d00, #ff4d00);
+            border-radius: 50% 50% 50% 50%;
+            top: -23px;
+            left: -2px;
+            animation: flicker 0.7s infinite alternate;
+            box-shadow: 0 0 18px #ffb300;
+        }
+
+        @keyframes flicker {
+            from {
+                transform: scale(1) rotate(-5deg);
+            }
+            to {
+                transform: scale(1.15) rotate(5deg);
+            }
+        }
+
+        .blown-out {
+            display: none;
+        }
+
+        .glow {
+            text-shadow: 0 0 20px rgba(255, 140, 190, 0.7);
+        }
+
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            color: rgba(255, 150, 190, 0.45);
+            animation: floatUp 8s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .photo-card img {
+                min-height: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body class="px-4 py-10">
+
+    <div class="relative z-10 max-w-5xl mx-auto text-center">
+
+        <!-- Header -->
+        <p class="text-pink-300 tracking-[0.35em] text-xs sm:text-sm font-bold mb-4">
+            A SPECIAL DAY FOR SOMEONE SPECIAL
+        </p>
+
+        <h1 class="birthday-title text-6xl sm:text-8xl text-pink-200 glow mb-3">
+            Happy Birthday
+        </h1>
+
+        <h2 class="text-4xl sm:text-6xl font-extrabold text-white mb-8">
+            Aryaa! <span class="text-pink-400">❤️</span>
+        </h2>
+
+        <p class="text-pink-100/80 text-sm sm:text-base max-w-xl mx-auto mb-10">
+            Today is all about celebrating you and the happiness you bring
+            to the people around you.
+        </p>
+
+        <!-- Photo Gallery -->
+        <div class="glass rounded-3xl p-4 sm:p-6 mb-10">
+
+            <h3 class="birthday-title text-4xl text-pink-200 mb-6">
+                Beautiful Memories ✨
+            </h3>
+
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+
+                <div class="photo-card col-span-2 sm:col-span-1">
+                    <img src="familyarya.jpeg"
+                         alt="Aryaa with family"
+                         onerror="this.alt='Family photo not found'">
+                </div>
+
+                <div class="photo-card">
+                    <img src="arya1.jpeg"
+                         alt="Aryaa photo 1"
+                         onerror="this.alt='Photo not found'">
+                </div>
+
+                <div class="photo-card">
+                    <img src="arya2.jpeg"
+                         alt="Aryaa photo 2"
+                         onerror="this.alt='Photo not found'">
+                </div>
+
+                <div class="photo-card">
+                    <img src="arya3.jpeg"
+                         alt="Aryaa photo 3"
+                         onerror="this.alt='Photo not found'">
+                </div>
+
+                <div class="photo-card">
+                    <img src="arya4.jpeg"
+                         alt="Aryaa photo 4"
+                         onerror="this.alt='Photo not found'">
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Birthday Message -->
+        <div class="glass rounded-3xl p-6 sm:p-10 mb-10">
+
+            <h3 class="birthday-title text-4xl sm:text-5xl text-pink-200 mb-5">
+                A Little Message For You 💌
+            </h3>
+
+            <p class="text-pink-50/90 leading-8 text-sm sm:text-base max-w-2xl mx-auto">
+                May your special day be filled with endless smiles,
+                beautiful memories, laughter and all the happiness
+                your heart deserves.
+
+                <br><br>
+
+                Keep shining, keep smiling, and never stop being
+                the wonderful person you are.
+
+                <br><br>
+
+                Wishing you an amazing year ahead, Aryaa!
+                You deserve all the love and happiness in the world. ❤️
+            </p>
+
+        </div>
+
+        <!-- Cake -->
+        <div class="glass rounded-3xl p-6 sm:p-8">
+
+            <h3 class="birthday-title text-4xl sm:text-5xl text-pink-200">
+                Make a Wish! 🎂
+            </h3>
+
+            <p class="text-pink-100/70 text-sm mt-2">
+                Tap the candle to blow it out!
+            </p>
+
+            <div class="cake">
+                <div class="candle">
+                    <div id="flame" class="flame"></div>
+                </div>
+
+                <div class="cake-top"></div>
+                <div class="cake-body"></div>
+                <div class="cake-icing"></div>
+            </div>
+
+            <button
+                id="blowButton"
+                onclick="blowCandle()"
+                class="mt-5 px-8 py-3 rounded-full bg-pink-500 hover:bg-pink-400 active:scale-95 transition font-bold shadow-lg shadow-pink-500/30">
+
+                Blow the Candle 🕯️
+
+            </button>
+
+            <p id="wishMessage"
+               class="hidden birthday-title text-4xl sm:text-5xl text-pink-200 mt-6">
+                May all your wishes come true! ✨❤️
+            </p>
+
+        </div>
+
+        <footer class="text-pink-200/50 text-xs mt-10">
+            Made with ❤️ for Aryaa
+        </footer>
+
+    </div>
+
+    <script>
+        let candleBlown = false;
+
+        function blowCandle() {
+            if (candleBlown) return;
+
+            candleBlown = true;
+
+            document.getElementById("flame").style.display = "none";
+
+            document.getElementById("wishMessage").classList.remove("hidden");
+
+            document.getElementById("blowButton").innerText =
+                "Wish Made! ❤️";
+
+            if (typeof confetti === "function") {
+                confetti({
+                    particleCount: 180,
+                    spread: 100,
+                    origin: { y: 0.65 },
+                    colors: ["#ff80ab", "#ffd1dc", "#ffffff", "#f9a8d4"]
+                });
+
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 100,
+                        spread: 120,
+                        origin: { y: 0.6 }
+                    });
+                }, 500);
+            }
+        }
+
+        // Floating hearts
+        function createHeart() {
+            const heart = document.createElement("div");
+
+            heart.className = "heart";
+            heart.innerHTML = "♥";
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (12 + Math.random() * 22) + "px";
+            heart.style.animationDuration = (6 + Math.random() * 6) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 12000);
+        }
+
+        setInterval(createHeart, 700);
+    </script>
+
+</body>
+</html>
